@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Faturação · Sensilis</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <img class="logo" src="logo.png" alt="Sensilis">
+  <nav id="tabs" class="tabs">
+    <button data-view="TOTAL" class="on">TOTAL</button>
+    <button data-view="LOJAS">LOJAS</button>
+    <button data-view="ONLINE">ONLINE</button>
+  </nav>
+  <div class="spacer"></div>
+  <span id="modeBadge" class="badge" hidden></span>
+  <span id="lastData" class="muted"></span>
+  <button id="btnImport" class="btn primary">Importar dados</button>
+</header>
+
+<div id="banner" class="banner" hidden></div>
+
+<div class="layout">
+  <aside id="filters" class="filters"></aside>
+  <main id="main">
+    <section class="bar">
+      <label class="field">Ano <select id="year"></select></label>
+      <div class="field grow"><span>Mês</span><div id="months" class="chips"></div></div>
+      <button id="btnClear" class="btn ghost">Limpar filtros</button>
+    </section>
+
+    <section id="empty" class="card empty" hidden>
+      <h2>Ainda não há dados</h2>
+      <p>Clica em <b>Importar dados</b> e escolhe os ficheiros Excel (podes escolher vários de uma vez).</p>
+    </section>
+
+    <div id="content">
+      <section id="kpis" class="kpis"></section>
+      <section class="grid">
+        <div class="card"><h3>Faturação mensal <small id="chartLegend"></small></h3><div id="chart"></div></div>
+        <div class="card"><h3>Evolução por mês</h3><div id="monthly" class="scroll short"></div></div>
+        <div class="card" id="lojasCard"><h3>Lojas <small>clica numa linha para filtrar</small></h3><div id="tblLojas" class="scroll"></div></div>
+        <div class="card" id="barsCard"><h3>Top lojas <small>faturação</small></h3><div id="bars"></div></div>
+        <div class="card wide"><h3>Artigos</h3><div id="tblArts" class="scroll"></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" class="dlgHead"><h2>Importar dados</h2><button class="x" aria-label="Fechar">×</button></form>
+  <div class="dlgBody">
+    <div id="drop" class="drop">
+      <p><b>Larga aqui os ficheiros Excel</b> ou</p>
+      <label class="btn">Escolher ficheiros<input id="file" type="file" accept=".xlsx" multiple hidden></label>
+      <p class="muted small">Mesmo formato de sempre (Data, LojaEntreposto, CodArtigo, DscArtigo, TipoArtigo, Marca, Quant, Valor…). Se importares um mês que já existe, ele é <b>substituído</b> — nunca há duplicados.</p>
+    </div>
+    <div id="preview"></div>
+    <div id="pwRow" class="pwRow" hidden><label>Palavra-passe de administração <input id="pw" type="password" autocomplete="current-password"></label></div>
+    <div id="msg" class="msg" hidden></div>
+    <div class="dlgFoot"><button id="btnDo" class="btn primary" disabled>Importar</button></div>
+    <details id="existing"><summary>Meses já carregados</summary><div id="existingList"></div></details>
+  </div>
+</dialog>
+<div id="tip" class="tip" hidden></div>
+<script src="core.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

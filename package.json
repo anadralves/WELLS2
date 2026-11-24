@@ -1,0 +1,8 @@
+{
+  "name": "dashboard-wells",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dashboard de faturação Wells/Sensilis — importação mensal de Excel",
+  "scripts": { "start": "node servidor-local.js", "verify": "node test/verify.js" },
+  "engines": { "node": ">=20" }
+}
